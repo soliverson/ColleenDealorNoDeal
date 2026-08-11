@@ -93,8 +93,10 @@ main {
 }
 #briefcasesContainer {
   display: grid;
-  grid-template-columns: repeat(9, minmax(90px, 115px));
-  gap: 4px;
+  grid-template-columns: repeat(7, minmax(90px, 115px));
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
   margin: 0 auto;
 }
 
