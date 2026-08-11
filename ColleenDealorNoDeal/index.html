@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Colleen's 75th - Deal or No Deal Game</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Modal overlay styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background-color: #222;
+      margin: auto;
+      padding: 20px;
+      border: 2px solid #d4af37;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      border-radius: 8px;
+      animation: modalEntrance 0.5s ease-out;
+    }
+    
+    @keyframes modalEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Intro video container styles */
+    #introVideoContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 20000; /* Above all other content */
+    }
+    
+    #introVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Play button for intro video */
+    #introPlayButton {
+      position: absolute;
+      z-index: 21000;
+      padding: 12px 24px;
+      background: rgba(212,175,55,0.9);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      color: #000;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    
+    #introPlayButton:hover {
+      transform: scale(1.05);
+      background: rgba(212,175,55,1);
+    }
+    
+    /* Header Buttons Container */
+    #headerButtons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 20px; /* Optional spacing from titles */
+    }
+    
+    /* Watch Intro Again button styling */
+    #watchIntroBtn {
+      margin-top: 5px;
+      padding: 8px 16px;
+      background: rgba(212,175,55,0.9);
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9em;
+      color: #000;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    
+    #watchIntroBtn:hover {
+      transform: scale(1.05);
+      background: rgba(212,175,55,1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Video Container -->
+ <!---- <div id="introVideoContainer">
+    <video id="introVideo" playsinline>
+      <source src="videos/intro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button id="introPlayButton">Play Intro</button>
+  </div>--->
+  
+  <!-- Optional loading overlay -->
+  <div id="loadingOverlay">Loading...</div>
+  
+  <header>
+    <div id="headerContent">
+      <img id="headerPhoto" src="images/dad75.webp" alt="Dad's 75th Birthday" loading="lazy">
+      <div id="headerTitles">
+        <h1>Colleen's 75th</h1>
+        <h1>Deal or No Deal</h1>
+      </div>
+      <!-- Header Buttons Container -->
+      <div id="headerButtons">
+        <button id="fullScreenBtn" onclick="toggleFullScreen()">Full Screen</button>
+        <!--<button id="watchIntroBtn">Watch Intro Again</button>-->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main layout: briefcases on the left, prizes on the right -->
+  <main>
+    <section id="briefcasesSection">
+      <div id="briefcasesContainer"></div>
+      <!-- Briefcases Info -->
+      <div id="briefcasesInfo">
+        <p id="gameMessage">Click a briefcase to choose your personal box.</p>
+      </div>
+    </section>
+
+    <aside id="prizesSection">
+      <h2>Prizes</h2>
+      <ul id="prizeBoard"></ul>
+      <h2>Previous Bank Offers</h2>
+      <ul id="offersHistory"></ul>
+    </aside>
+  </main>
+
+  <!-- Fireworks container -->
+  <div id="fireworksContainer"></div>
+
+  <!-- Audio elements -->
+  <audio id="clickSound" src="audio/click.mp3" preload="auto"></audio>
+  <audio id="offerSound" src="audio/offer.mp3" preload="auto"></audio>
+  <audio id="declineSound" src="audio/decline.mp3" preload="auto"></audio>
+  <audio id="applause" src="audio/applause.mp3" preload="auto"></audio>
+  <audio id="suspenseMusic" src="audio/jaws.mp3" preload="auto"></audio>
+
+  <!-- Modal Overlay for Round Announcements, Banker Offers, and Final Swap -->
+  <div id="offerModal" class="modal">
+    <div class="modal-content">
+      <div id="offerDetails"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script defer src="scripts/data.js"></script>
+  <script defer src="scripts/render.js"></script>
+  <script defer src="scripts/sounds.js"></script>
+  <script defer src="scripts/game.js"></script>
+  <script defer src="scripts/effects.js"></script>
+  <script defer src="scripts/screen.js"></script>
+  <script defer src="scripts/intro.js"></script>
+  <script defer>
+    window.onload = function() {
+      document.getElementById("loadingOverlay").style.display = "none";
+      renderBriefcases();
+      updateSidePanels();
+      // Show "Round 1" modal only once at game start.
+      showRoundModal(1);
+    };
+  </script>
+</body>
+</html>
