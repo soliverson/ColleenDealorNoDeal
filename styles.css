@@ -1,57 +1,90 @@
-/* Import modern font */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* ======================================================
+   BASE STYLES
+   ====================================================== */
 
-/* Base Styles */
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #000 !important;
+  background-color: #000 !important;
+}
+
 body {
   margin: 0;
   padding: 5px;
-  background: linear-gradient(135deg, #000, #222);
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: #000 !important;
+  background-color: #000 !important;
   color: #d4af37;
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
 }
 
-/* Header styling */
+/* ======================================================
+   HEADER
+   ====================================================== */
+
 header {
-  position: relative;  /* Needed for absolute positioning of headerButtons */
+  position: relative;
+  background: #000;
   border-bottom: 2px solid #d4af37;
   padding-bottom: 5px;
   margin-bottom: 5px;
 }
+
 #headerContent {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  background: #000;
 }
+
 #headerPhoto {
-  width: 100px; /* Adjust as needed */
+  width: 100px;
+  height: auto;
   border: 4px solid gold;
   box-shadow: 0 0 20px gold;
   border-radius: 10px;
   margin: 5px;
 }
+
 #headerTitles {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 h1 {
   font-size: 2.2em;
   margin: 3px 0;
   background: linear-gradient(45deg, #fff, #ffd700, #fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: shine 3s ease-in-out infinite;
   text-shadow: 0 0 8px gold, 0 0 1px goldenrod;
 }
+
 @keyframes shine {
-  0%   { filter: brightness(1); }
-  50%  { filter: brightness(1.5); }
-  100% { filter: brightness(1); }
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.5);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
 }
 
-/* Header Buttons positioned in the top-right corner */
+/* Header buttons */
 #headerButtons {
   position: absolute;
   top: 10px;
@@ -60,8 +93,10 @@ h1 {
   flex-direction: column;
   align-items: flex-end;
 }
-#fullScreenBtn, #watchIntroBtn {
-  background: rgba(212,175,55,0.8);
+
+#fullScreenBtn,
+#watchIntroBtn {
+  background: rgba(212, 175, 55, 0.9);
   border: 1px solid #d4af37;
   border-radius: 4px;
   padding: 6px 12px;
@@ -70,92 +105,148 @@ h1 {
   transition: background 0.3s;
   margin-bottom: 5px;
 }
-#fullScreenBtn:hover, #watchIntroBtn:hover {
-  background: rgba(212,175,55,1);
+
+#fullScreenBtn:hover,
+#watchIntroBtn:hover {
+  background: rgba(212, 175, 55, 1);
 }
 
-/* Main layout */
+/* ======================================================
+   MAIN GAME LAYOUT
+   ====================================================== */
+
 main {
   display: flex;
+  width: 100%;
   max-width: 1300px;
   margin: 0 auto;
   gap: 10px;
+  box-sizing: border-box;
+  background: #000;
 }
 
-/* Briefcases area */
+/* ======================================================
+   BRIEFCASES / PICTURES
+   ====================================================== */
+
 #briefcasesSection {
   flex: 2;
+  min-width: 0;
   margin-right: 10px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: #000;
   border-radius: 5px;
   padding: 10px;
+  box-sizing: border-box;
 }
+
+/*
+  Large screens:
+  21 pictures = 7 columns x 3 rows
+*/
 #briefcasesContainer {
   display: grid;
   grid-template-columns: repeat(7, minmax(90px, 115px));
   justify-content: center;
+  align-items: start;
   gap: 6px;
   width: 100%;
   margin: 0 auto;
+  background: #000;
 }
 
-/* Briefcases Info */
+/* Briefcases information/message */
 #briefcasesInfo {
   margin-top: 8px;
   font-size: 1.5em;
+  background: #000;
 }
 
-/* Prizes area */
+/* ======================================================
+   PRIZE BOARD
+   ====================================================== */
+
 #prizesSection {
   flex: 0 0 200px;
   border-left: 2px solid #d4af37;
   padding-left: 5px;
   text-align: center;
+  background: #000;
+  box-sizing: border-box;
 }
+
 #prizeBoard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
+  background: #000;
 }
 
-/* Briefcase styling */
+/* ======================================================
+   BRIEFCASE / PICTURE CARDS
+   ====================================================== */
+
 .briefcase {
-  background-color: #C0C0C0;
-  border: 2px solid #C0C0C0;
+  background-color: #c0c0c0;
+  border: 2px solid #c0c0c0;
   border-radius: 8px;
   padding: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
   font-size: 1.2em;
   color: #000;
   user-select: none;
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    background-color 0.3s,
+    box-shadow 0.2s;
   overflow: hidden;
 }
+
 .briefcase:hover {
   transform: scale(1.05);
-  background-color: rgba(255,215,0,0.6);
-  box-shadow: 0 0 8px rgba(255,215,0,0.6);
+  background-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
 }
+
+/* Player's selected briefcase */
 .briefcase.personal {
-  background: linear-gradient(135deg, rgba(255,215,0,0.6), rgba(255,215,0,0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.6),
+    rgba(255, 215, 0, 0.3)
+  );
   border: 4px solid #ffd700;
   transform: scale(1.1);
   animation: pulseHighlight 2s infinite;
 }
+
 @keyframes pulseHighlight {
-  0%   { box-shadow: 0 0 10px 3px rgba(255,215,0,0.6); }
-  50%  { box-shadow: 0 0 20px 6px rgba(255,215,0,1); }
-  100% { box-shadow: 0 0 10px 3px rgba(255,215,0,0.6); }
+  0% {
+    box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 6px rgba(255, 215, 0, 1);
+  }
+
+  100% {
+    box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.6);
+  }
 }
+
+/* Picture inside each briefcase */
 .briefcase-img {
   width: 100%;
+  height: auto;
   display: block;
   margin: 0 auto;
   border-radius: 5px;
 }
+
+/* Number/name underneath picture */
 .briefcase-number {
   text-align: center;
   font-weight: bold;
@@ -171,7 +262,10 @@ main {
   text-overflow: ellipsis;
 }
 
-/* Center blown-up effect */
+/* ======================================================
+   CENTER OPENED IMAGE
+   ====================================================== */
+
 .center-img {
   width: 250px !important;
   max-width: 90vw;
@@ -181,12 +275,29 @@ main {
   display: block;
   margin: 0 auto;
 }
+
 @keyframes centerExpand {
-  0%   { transform: translate(-50%, -50%) scale(1) rotateY(0deg); opacity: 1; }
-  10%  { transform: translate(-50%, -50%) scale(1.5) rotateY(-90deg); opacity: 1; }
-  90%  { transform: translate(-50%, -50%) scale(1.5) rotateY(-90deg); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(1) rotateY(-90deg); opacity: 0; }
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+
+  10% {
+    transform: translate(-50%, -50%) scale(1.5) rotateY(-90deg);
+    opacity: 1;
+  }
+
+  90% {
+    transform: translate(-50%, -50%) scale(1.5) rotateY(-90deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotateY(-90deg);
+    opacity: 0;
+  }
 }
+
 .center-open {
   position: fixed;
   top: 50%;
@@ -197,30 +308,41 @@ main {
   z-index: 10000;
 }
 
-/* Message styling */
+/* ======================================================
+   MESSAGES
+   ====================================================== */
+
 .message {
   margin-bottom: 10px;
   line-height: 1.3;
   font-size: 1em;
 }
 
-/* Lists */
+/* ======================================================
+   LISTS
+   ====================================================== */
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 1.2em;
 }
+
 li {
   margin: 4px 0;
   font-size: 1em;
 }
+
 li.eliminated {
   color: gray;
   text-decoration: line-through;
 }
 
-/* Buttons */
+/* ======================================================
+   BUTTONS
+   ====================================================== */
+
 button {
   background: linear-gradient(45deg, #d4af37, #ffcf00);
   color: #000;
@@ -230,35 +352,49 @@ button {
   cursor: pointer;
   border-radius: 12px;
   font-size: 1em;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   animation: pulse 2s infinite;
 }
+
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.4);
-}
-button:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* No Deal (decline) button */
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* No Deal button */
 button.decline {
   background: linear-gradient(45deg, #ff4c4c, #d10000);
   color: #fff;
   border: 2px solid #a30000;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
 button.decline:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
 }
 
 /* Deal button */
@@ -267,14 +403,18 @@ button.deal {
   color: #fff;
   border: 2px solid #1b5e20;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-}
-button.deal:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Fireworks container & animations */
+button.deal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* ======================================================
+   FIREWORKS
+   ====================================================== */
+
 #fireworksContainer {
   position: fixed;
   top: 0;
@@ -285,20 +425,32 @@ button.deal:hover {
   overflow: hidden;
   z-index: 9999;
 }
+
 .firework {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle, #fff, rgba(212,175,55,0));
+  background: radial-gradient(circle, #fff, rgba(212, 175, 55, 0));
   border-radius: 50%;
   animation: explode 1.5s ease-out forwards;
 }
+
 @keyframes explode {
-  0%   { transform: scale(1); opacity: 1; }
-  100% { transform: scale(5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(5);
+    opacity: 0;
+  }
 }
 
-/* Modal container */
+/* ======================================================
+   MODAL
+   ====================================================== */
+
 .modal {
   display: none;
   position: fixed;
@@ -308,13 +460,12 @@ button.deal:hover {
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
   transition: opacity 0.3s ease;
 }
 
-/* Modal content box */
 .modal-content {
   background-color: #222;
   margin: auto;
@@ -326,18 +477,20 @@ button.deal:hover {
   border-radius: 8px;
   animation: modalEntrance 0.5s ease-out;
 }
+
 @keyframes modalEntrance {
   0% {
     opacity: 0;
     transform: translateY(50px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Close button (optional) */
+/* Close button */
 .close {
   color: #d4af37;
   float: right;
@@ -345,6 +498,7 @@ button.deal:hover {
   font-weight: bold;
   cursor: pointer;
 }
+
 .close:hover,
 .close:focus {
   color: #fff;
@@ -352,102 +506,345 @@ button.deal:hover {
   cursor: pointer;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  #briefcasesContainer {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  }
-  h1 {
-    font-size: 2em;
-  }
-  #prizesSection {
-    flex: 0 0 180px;
-  }
-}
+/* ======================================================
+   RESULT MODAL
+   ====================================================== */
 
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
-    align-items: center;
-  }
-  #prizesSection {
-    border-left: none;
-    margin-top: 10px;
-    width: 90%;
-    max-width: 400px;
-  }
-  #briefcasesContainer {
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  }
-  h1 {
-    font-size: 1.8em;
-  }
-  #headerPhoto {
-    width: 80px;
-  }
-  #briefcasesInfo {
-    font-size: 1.2em;
-  }
-}
-
-/* Result Modal - for accepted deal / game finish */
 .result-modal {
   background: linear-gradient(135deg, #ffd700, #ffea00, #ffd700);
   box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8);
   animation: resultPulse 2s infinite;
 }
+
 .result-modal .message {
   font-weight: bold;
   font-size: 1.2em;
   color: #000;
 }
+
 @keyframes resultPulse {
   0% {
     transform: scale(1);
     box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.7);
   }
+
   50% {
     transform: scale(1.02);
     box-shadow: 0 0 20px 6px rgba(255, 215, 0, 1);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.7);
   }
 }
 
-/* Intro video container */
+/* ======================================================
+   INTRO VIDEO
+   ====================================================== */
+
 #introVideoContainer {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: black;
+  background: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 20000;
 }
+
 #introVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 #introPlayButton {
   position: absolute;
   z-index: 21000;
   padding: 12px 24px;
-  background: rgba(212,175,55,0.9);
+  background: rgba(212, 175, 55, 0.9);
   border: none;
   border-radius: 8px;
   font-size: 1.2em;
   color: #000;
   cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+  transition:
+    transform 0.2s,
+    background 0.3s;
 }
+
 #introPlayButton:hover {
   transform: scale(1.05);
-  background: rgba(212,175,55,1);
+  background: rgba(212, 175, 55, 1);
+}
+
+/* ======================================================
+   MEDIUM SCREENS
+   Laptops / tablets
+   ====================================================== */
+
+@media (max-width: 1200px) {
+  #briefcasesContainer {
+    grid-template-columns: repeat(5, minmax(75px, 100px));
+    justify-content: center;
+  }
+
+  #prizesSection {
+    flex: 0 0 180px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+}
+
+/* ======================================================
+   TABLETS / SMALL SCREENS
+   ====================================================== */
+
+@media (max-width: 768px) {
+  html,
+  body {
+    background: #000 !important;
+    background-color: #000 !important;
+  }
+
+  body {
+    padding: 4px;
+  }
+
+  main {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: #000;
+  }
+
+  #briefcasesSection {
+    width: 100%;
+    margin-right: 0;
+    box-sizing: border-box;
+    background: #000;
+  }
+
+  /*
+    3 pictures across
+  */
+  #briefcasesContainer {
+    grid-template-columns: repeat(3, minmax(85px, 1fr));
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    background: #000;
+  }
+
+  #prizesSection {
+    box-sizing: border-box;
+    border-left: none;
+    border-top: 2px solid #d4af37;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-left: 0;
+    width: 100%;
+    max-width: 500px;
+    background: #000;
+  }
+
+  #prizeBoard {
+    grid-template-columns: repeat(2, 1fr);
+    background: #000;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  #headerPhoto {
+    width: 75px;
+  }
+
+  #briefcasesInfo {
+    font-size: 1.1em;
+  }
+
+  .briefcase-number {
+    font-size: 0.9em;
+    padding: 3px;
+  }
+}
+
+/* ======================================================
+   iPHONE / MOBILE
+   ====================================================== */
+
+@media (max-width: 430px) {
+  html {
+    width: 100%;
+    min-height: 100%;
+    background: #000 !important;
+    background-color: #000 !important;
+  }
+
+  body {
+    width: 100%;
+    min-height: 100vh;
+    padding: 3px;
+    overflow-x: hidden;
+    background: #000 !important;
+    background-color: #000 !important;
+    font-size: 0.95em;
+  }
+
+  header {
+    width: 100%;
+    background: #000;
+    padding-bottom: 4px;
+  }
+
+  #headerContent {
+    flex-direction: column;
+    background: #000;
+  }
+
+  #headerPhoto {
+    width: 65px;
+    border-width: 3px;
+    margin: 3px;
+  }
+
+  #headerTitles {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.3em;
+    margin: 1px 0;
+  }
+
+  /* Move fullscreen button below header */
+  #headerButtons {
+    position: static;
+    align-items: center;
+    margin: 3px 0;
+  }
+
+  #fullScreenBtn,
+  #watchIntroBtn {
+    font-size: 0.8em;
+    padding: 5px 10px;
+    margin: 3px;
+  }
+
+  main {
+    width: 100%;
+    background: #000;
+  }
+
+  #briefcasesSection {
+    width: 100%;
+    padding: 5px;
+    background: #000;
+  }
+
+  /*
+    iPhone:
+    3 pictures across
+  */
+  #briefcasesContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    background: #000;
+  }
+
+  .briefcase {
+    padding: 1px;
+    border-width: 1px;
+    border-radius: 6px;
+  }
+
+  .briefcase-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .briefcase-number {
+    font-size: 0.75em;
+    padding: 2px;
+    margin-top: 1px;
+  }
+
+  .briefcase.personal {
+    border-width: 3px;
+    transform: scale(1.04);
+  }
+
+  #briefcasesInfo {
+    margin-top: 6px;
+    font-size: 1em;
+    background: #000;
+  }
+
+  #prizesSection {
+    width: 100%;
+    max-width: none;
+    background: #000;
+  }
+
+  #prizeBoard {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 0.9em;
+    background: #000;
+  }
+
+  #offersHistory {
+    font-size: 0.9em;
+  }
+
+  .modal-content {
+    box-sizing: border-box;
+    width: 92%;
+    max-width: 92%;
+    padding: 15px 10px;
+  }
+
+  .center-img {
+    width: 75vw !important;
+    max-width: 300px;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 7px 12px;
+  }
+}
+
+/* ======================================================
+   VERY SMALL PHONES
+   ====================================================== */
+
+@media (max-width: 350px) {
+  #briefcasesContainer {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3px;
+  }
+
+  .briefcase-number {
+    font-size: 0.68em;
+  }
+
+  h1 {
+    font-size: 1.15em;
+  }
+
+  #headerPhoto {
+    width: 55px;
+  }
 }
