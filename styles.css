@@ -2261,3 +2261,45 @@ body.tv-fullscreen #prizesSection {
   overflow:
     hidden !important;
 }
+
+/* ======================================================
+   INTRO BUTTONS
+   ====================================================== */
+
+#introButtons {
+  position: absolute;
+
+  bottom: 40px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 12px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 21000;
+}
+
+#introButtons button {
+  padding: 12px 20px;
+
+  font-size: 1.1em;
+
+  font-weight: bold;
+
+  border-radius: 8px;
+
+  white-space: nowrap;
+}
+
+#introPlayButton,
+#introFullScreenButton,
+#skipIntroButton {
+  position: static;
+}
