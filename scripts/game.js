@@ -99,7 +99,7 @@ function briefcaseClicked(box) {
 
       }, 6000);
 
-    }, 4000);
+    }, 5000);
 
     return;
   }
