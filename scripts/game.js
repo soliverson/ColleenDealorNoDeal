@@ -21,41 +21,85 @@ function briefcaseClicked(box) {
 
     const casesToOpen = rounds[currentRound];
 
-    // Update the board immediately so the selected
-    // personal box is highlighted.
+    // Update the board so the selected personal box
+    // is highlighted immediately.
     renderBriefcases();
     updateSidePanels();
 
-    // Temporarily prevent other briefcases from being clicked.
+    // Prevent any other briefcases from being clicked
+    // while the personal-box reveal is showing.
     offerActive = true;
 
-    // Tell the player what they selected and what to do next.
-    document.getElementById("offerDetails").innerHTML = `
-      <p class="message">
-        Your personal box is
-        <strong>#${box}</strong>
-      </p>
+    const briefcase =
+      document.getElementById("briefcase-" + box);
 
-      <p class="cases-to-open">
-        Now choose
-        <strong>${casesToOpen}</strong>
-        box${casesToOpen === 1 ? "" : "es"} to open.
-      </p>
+    // Make a large clone of the chosen personal box.
+    const clone = briefcase.cloneNode(true);
+
+    clone.innerHTML = `
+      <img
+        class="center-img"
+        src="${boxImages[box]}"
+        alt="Personal Box ${box}"
+      >
+
+      <div class="personal-box-message">
+        THIS IS YOUR BOX!
+      </div>
+
+      <div class="center-amount">
+        Box #${box}
+      </div>
     `;
 
-    document.getElementById("offerModal").style.display = "flex";
+    clone.classList.add("center-open");
+    clone.classList.add("personal-box-reveal");
 
-    // Keep this instruction on the screen for 6 seconds.
+    // Prevent the large reveal from reacting to mouse hover.
+    clone.style.pointerEvents = "none";
+
+    document.body.appendChild(clone);
+
+
+    // ------------------------------------------------------
+    // Show personal box reveal for 4 seconds
+    // ------------------------------------------------------
     setTimeout(() => {
 
-      document.getElementById("offerModal").style.display = "none";
+      clone.remove();
 
-      document.getElementById("gameMessage").textContent =
-        `Choose ${casesToOpen} box${casesToOpen === 1 ? "" : "es"} to open.`;
+      // After the reveal, show the instruction popup.
+      document.getElementById("offerDetails").innerHTML = `
+        <p class="message">
+          Your personal box is
+          <strong>#${box}</strong>
+        </p>
 
-      offerActive = false;
+        <p class="cases-to-open">
+          Now choose
+          <strong>${casesToOpen}</strong>
+          box${casesToOpen === 1 ? "" : "es"} to open.
+        </p>
+      `;
 
-    }, 5000);
+      document.getElementById("offerModal").style.display =
+        "flex";
+
+
+      // Keep this instruction visible for 6 seconds.
+      setTimeout(() => {
+
+        document.getElementById("offerModal").style.display =
+          "none";
+
+        document.getElementById("gameMessage").textContent =
+          `Choose ${casesToOpen} box${casesToOpen === 1 ? "" : "es"} to open.`;
+
+        offerActive = false;
+
+      }, 6000);
+
+    }, 4000);
 
     return;
   }
@@ -65,10 +109,10 @@ function briefcaseClicked(box) {
   // NORMAL GAME PLAY
   // ------------------------------------------------------
 
-  // Do not allow the personal box to be opened.
+  // Don't allow the player's personal box to be opened.
   if (box === chosenBox) return;
 
-  // Do not allow an already-opened box to be opened again.
+  // Don't allow an already-opened box to be opened again.
   if (openedStatus[box]) return;
 
   openBriefcase(box);
@@ -88,7 +132,7 @@ function openBriefcase(box) {
   const briefcase =
     document.getElementById("briefcase-" + box);
 
-  let clone = briefcase.cloneNode(true);
+  const clone = briefcase.cloneNode(true);
 
   clone.innerHTML = `
     <img
@@ -107,11 +151,14 @@ function openBriefcase(box) {
 
   clone.classList.add("center-open");
 
+  // Prevent hover from moving/glitching the large image.
+  clone.style.pointerEvents = "none";
+
   document.body.appendChild(clone);
 
 
   // ------------------------------------------------------
-  // Remove the prize value from remaining values
+  // Remove prize value from remaining values
   // ------------------------------------------------------
 
   const idx =
@@ -122,7 +169,7 @@ function openBriefcase(box) {
   }
 
 
-  // Count this opened box.
+  // Count opened box.
   openedCount++;
 
   renderBriefcases();
@@ -130,7 +177,7 @@ function openBriefcase(box) {
 
 
   // ------------------------------------------------------
-  // Find remaining unopened boxes
+  // Find unopened boxes besides personal box
   // ------------------------------------------------------
 
   const unopened = boxes.filter(
@@ -139,7 +186,7 @@ function openBriefcase(box) {
 
 
   // ------------------------------------------------------
-  // Update instructions as boxes are opened
+  // Update instructions after each opened box
   // ------------------------------------------------------
 
   if (currentRound < rounds.length) {
@@ -165,8 +212,6 @@ function openBriefcase(box) {
   // FINAL TWO BOXES
   // ------------------------------------------------------
 
-  // If only one unopened box remains besides
-  // the player's personal box, go to final swap.
   if (
     unopened.length === 1 &&
     !finalSwapActive
@@ -178,7 +223,7 @@ function openBriefcase(box) {
 
     setTimeout(() => {
       clone.remove();
-    }, 19000);
+    }, 6000);
 
     return;
   }
@@ -204,17 +249,17 @@ function openBriefcase(box) {
 
       offerDeal();
 
-      // Reset for the next round.
+      // Reset opened box count for next round.
       openedCount = 0;
 
     }, 1000);
   }
 
 
-  // Remove enlarged opened-box image.
+  // Remove large opened-box image after 5 seconds.
   setTimeout(() => {
     clone.remove();
-  }, 19000);
+  }, 5000);
 }
 
 
@@ -528,8 +573,8 @@ function declineDealModal() {
     "flex";
 
 
-  // Keep the No Deal / next-round instructions
-  // visible for 6 seconds as well.
+  // Keep No Deal / next-round instruction visible
+  // for 6 seconds.
   setTimeout(() => {
 
     document.getElementById("offerModal").style.display =
@@ -546,7 +591,7 @@ function declineDealModal() {
 
     declineHandled = false;
 
-  }, 5000);
+  }, 6000);
 }
 
 
@@ -572,8 +617,8 @@ function showRoundModal(roundDisplay) {
   // START OF GAME
   // ------------------------------------------------------
 
-  // At the very beginning, ONLY ask the player
-  // to choose their personal box.
+  // At the very beginning,
+  // ONLY ask the player to choose a personal box.
   if (
     roundDisplay === 1 &&
     !chosenBox
@@ -622,8 +667,8 @@ function showRoundModal(roundDisplay) {
     "flex";
 
 
-  // Initial "Choose your personal box" message
-  // stays up for 3 seconds.
+  // Initial "Choose your personal box"
+  // message stays up for 5 seconds.
   setTimeout(() => {
 
     document.getElementById("offerModal").style.display =
@@ -639,5 +684,5 @@ function showRoundModal(roundDisplay) {
         "Choose your personal box.";
     }
 
-  }, 6000);
+  }, 5000);
 }
