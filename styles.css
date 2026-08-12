@@ -108,7 +108,6 @@ h1 {
 }
 
 @keyframes shine {
-
   0% {
     filter: brightness(1);
   }
@@ -296,9 +295,6 @@ main {
   overflow: hidden;
 }
 
-
-/* Only NORMAL grid cases can move on hover */
-
 .briefcase:not(.center-open):not(.personal-box-reveal):hover {
   transform: scale(1.04);
 
@@ -394,7 +390,6 @@ main {
 }
 
 @keyframes pulseHighlight {
-
   0% {
     box-shadow:
       0 0 10px #ffd700,
@@ -514,8 +509,7 @@ main {
 #prizeBoard li.eliminated {
   color: #666;
 
-  text-decoration:
-    line-through;
+  text-decoration: line-through;
 
   opacity: 0.7;
 }
@@ -704,7 +698,6 @@ button.decline {
 }
 
 @keyframes modalEntrance {
-
   from {
     opacity: 0;
 
@@ -809,7 +802,6 @@ button.decline {
 }
 
 @keyframes resultPulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -865,7 +857,6 @@ button.decline {
 }
 
 @keyframes explode {
-
   0% {
     transform: scale(1);
 
@@ -1034,553 +1025,433 @@ button.decline {
 
 
 /* ======================================================
-   PHONE
+   DESKTOP / LAPTOP FULLSCREEN
    ====================================================== */
 
-@media (max-width: 430px) {
+@media (min-width: 769px) {
 
-  body {
-    padding: 3px;
+  html:fullscreen,
+  html:fullscreen body {
+    width: 100vw;
 
-    overflow-x: hidden;
+    height: 100vh;
+
+    margin: 0;
+
+    padding: 0;
+
+    overflow: hidden !important;
+
+    background: #000;
   }
 
-  #headerContent {
+  body.tv-fullscreen {
+    width: 100vw;
+
+    height: 100vh;
+
+    max-height: 100vh;
+
+    margin: 0;
+
+    padding: 0;
+
+    overflow: hidden !important;
+
+    background: #000;
+
+    display: flex;
+
     flex-direction: column;
   }
 
-  #headerPhoto {
-    width: 70px;
+
+  /* ---------------- FULLSCREEN HEADER ---------------- */
+
+  body.tv-fullscreen header {
+    flex: 0 0 13vh;
+
+    height: 13vh;
+
+    min-height: 0;
+
+    margin: 0;
+
+    padding:
+      0
+      1vw;
   }
 
-  h1 {
-    font-size: 1.35em;
-  }
+  body.tv-fullscreen #headerContent {
+    height: 100%;
 
-  #headerButtons {
-    position: static;
+    flex-direction: row;
+
+    flex-wrap: nowrap;
 
     align-items: center;
   }
 
-  #briefcasesContainer {
+  body.tv-fullscreen #headerPhoto {
+    height: 10.8vh;
+
+    width: auto;
+
+    max-width: 9vw;
+
+    object-fit: cover;
+
+    border-width: 4px;
+  }
+
+  body.tv-fullscreen #headerTitles {
+    flex: 1;
+  }
+
+  body.tv-fullscreen #headerTitles h1 {
+    margin: 0;
+
+    line-height: 1;
+
+    font-size:
+      clamp(
+        24px,
+        2.35vw,
+        42px
+      );
+  }
+
+  body.tv-fullscreen #headerButtons {
+    position: static;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+  }
+
+
+  /* ---------------- FULLSCREEN MAIN ---------------- */
+
+  body.tv-fullscreen main {
+    flex: 1;
+
+    min-height: 0;
+
+    max-width: none;
+
+    width: 100%;
+
+    height: 87vh;
+
+    display: grid;
+
     grid-template-columns:
+      minmax(0, 1fr)
+      minmax(245px, 22vw);
+
+    gap: 0.8vw;
+
+    margin: 0;
+
+    padding:
+      0.6vh
+      0.7vw;
+
+    overflow: hidden !important;
+  }
+
+
+  /* ---------------- FULLSCREEN CASE AREA ---------------- */
+
+  body.tv-fullscreen #briefcasesSection {
+    min-width: 0;
+
+    min-height: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden !important;
+  }
+
+
+  /* ---------------- FULLSCREEN GRID ---------------- */
+
+  body.tv-fullscreen #briefcasesContainer {
+    flex: 1;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        7,
+        minmax(0, 1fr)
+      );
+
+    grid-template-rows:
       repeat(
         3,
         minmax(0, 1fr)
       );
 
-    gap: 4px;
+    gap:
+      clamp(
+        3px,
+        0.45vw,
+        8px
+      );
+
+    width: 100%;
+
+    height: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    overflow: hidden !important;
   }
 
-  .briefcase {
-    padding: 1px;
 
-    border-width: 1px;
+  /* ---------------- FULLSCREEN CASES ---------------- */
+
+  body.tv-fullscreen
+  .briefcase:not(.center-open):not(.personal-box-reveal) {
+
+    min-width: 0;
+
+    min-height: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    margin: 0;
+
+    padding: 2px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow: hidden;
   }
 
-  .briefcase.personal {
-    border-width: 4px;
+  body.tv-fullscreen
+  .briefcase:not(.center-open):not(.personal-box-reveal)
+  .briefcase-img {
 
-    transform:
-      scale(1.03);
+    width: 100%;
+
+    height:
+      calc(100% - 25px);
+
+    min-height: 0;
+
+    aspect-ratio: auto;
+
+    object-fit: cover;
+
+    object-position: center top;
   }
 
+  body.tv-fullscreen
+  .briefcase:not(.center-open):not(.personal-box-reveal)
   .briefcase-number {
-    font-size: 0.75em;
+
+    width: 100%;
+
+    font-size:
+      clamp(
+        12px,
+        1.05vw,
+        20px
+      );
 
     padding: 2px;
   }
 
-  #prizesSection {
-    width: 100%;
+
+  /* ---------------- PERSONAL GRID CASE ---------------- */
+
+  body.tv-fullscreen .briefcase.personal {
+    border:
+      5px solid #ffd700 !important;
+
+    transform:
+      scale(1.04) !important;
+
+    z-index: 20;
+
+    animation:
+      pulseHighlight
+      1.3s
+      infinite;
   }
 
-  .modal-content {
-    width: 92%;
 
-    max-width: 92%;
+  /* ---------------- GAME MESSAGE ---------------- */
+
+  body.tv-fullscreen #briefcasesInfo {
+    flex:
+      0 0 5.5vh;
+
+    height: 5.5vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0;
+
+    padding: 0;
   }
 
-  #introButtons {
-    bottom: 20px;
+  body.tv-fullscreen #gameMessage {
+    font-size:
+      clamp(
+        20px,
+        1.7vw,
+        30px
+      );
 
-    gap: 5px;
+    font-weight: 800;
 
-    width: 96%;
-
-    flex-wrap: wrap;
+    color: #ffd700;
   }
 
-  #introButtons button {
+
+  /* ---------------- PRIZES ---------------- */
+
+  body.tv-fullscreen #prizesSection {
+    min-width: 0;
+
+    min-height: 0;
+
+    height: 100%;
+
+    margin: 0;
+
     padding:
-      8px
-      10px;
+      0.5vh
+      0.6vw;
 
-    font-size: 0.85em;
+    border-left:
+      3px solid #d4af37;
+
+    overflow: hidden !important;
+  }
+
+  body.tv-fullscreen #prizesSection h2 {
+    font-size:
+      clamp(
+        20px,
+        1.7vw,
+        30px
+      );
+
+    margin:
+      0.5vh
+      0
+      0.8vh;
+
+    color: #ffd700;
+
+    font-weight: 900;
+
+    text-shadow:
+      0 0 10px
+      rgba(255, 215, 0, 0.8);
+  }
+
+  body.tv-fullscreen #prizeBoard {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap:
+      0.1vh
+      0.7vw;
+  }
+
+  body.tv-fullscreen #prizeBoard li {
+    font-size:
+      clamp(
+        14px,
+        1.15vw,
+        21px
+      );
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    margin:
+      0.18vh
+      0;
+
+    color: #ffd700;
+  }
+
+  body.tv-fullscreen #prizeBoard li.eliminated {
+    color: #666;
+  }
+
+  body.tv-fullscreen #offersHistory li {
+    font-size:
+      clamp(
+        12px,
+        0.95vw,
+        18px
+      );
+
+    line-height: 1.15;
+
+    margin:
+      0.2vh
+      0;
+  }
+
+
+  /* ---------------- FULLSCREEN MODAL ---------------- */
+
+  body.tv-fullscreen .modal-content {
+    max-width: 55vw;
+
+    max-height: 75vh;
+
+    padding:
+      clamp(
+        15px,
+        2vw,
+        35px
+      );
   }
 }
 
 
 /* ======================================================
-   FULLSCREEN
-   ====================================================== */
-
-html:fullscreen,
-html:fullscreen body {
-  width: 100vw;
-
-  height: 100vh;
-
-  margin: 0;
-
-  padding: 0;
-
-  overflow: hidden !important;
-
-  background: #000;
-}
-
-body.tv-fullscreen {
-  width: 100vw;
-
-  height: 100vh;
-
-  max-height: 100vh;
-
-  margin: 0;
-
-  padding: 0;
-
-  overflow: hidden !important;
-
-  background: #000;
-
-  display: flex;
-
-  flex-direction: column;
-}
-
-
-/* ======================================================
-   FULLSCREEN HEADER
-   ====================================================== */
-
-body.tv-fullscreen header {
-  flex:
-    0 0 13vh;
-
-  height: 13vh;
-
-  min-height: 0;
-
-  margin: 0;
-
-  padding:
-    0
-    1vw;
-
-  box-sizing:
-    border-box;
-}
-
-body.tv-fullscreen #headerContent {
-  height: 100%;
-
-  flex-direction: row;
-
-  flex-wrap: nowrap;
-
-  align-items: center;
-}
-
-body.tv-fullscreen #headerPhoto {
-  height: 10.8vh;
-
-  width: auto;
-
-  max-width: 9vw;
-
-  object-fit: cover;
-
-  border-width: 4px;
-}
-
-body.tv-fullscreen #headerTitles {
-  flex: 1;
-}
-
-body.tv-fullscreen #headerTitles h1 {
-  margin: 0;
-
-  line-height: 1;
-
-  font-size:
-    clamp(
-      24px,
-      2.35vw,
-      42px
-    );
-}
-
-body.tv-fullscreen #headerButtons {
-  position: static;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: flex-end;
-}
-
-
-/* ======================================================
-   FULLSCREEN MAIN
-   ====================================================== */
-
-body.tv-fullscreen main {
-  flex: 1;
-
-  min-height: 0;
-
-  max-width: none;
-
-  width: 100%;
-
-  height: 87vh;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(245px, 22vw);
-
-  gap: 0.8vw;
-
-  margin: 0;
-
-  padding:
-    0.6vh
-    0.7vw;
-
-  overflow: hidden !important;
-}
-
-
-/* ======================================================
-   FULLSCREEN BRIEFCASE AREA
-   ====================================================== */
-
-body.tv-fullscreen #briefcasesSection {
-  min-width: 0;
-
-  min-height: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  margin: 0;
-
-  padding: 0;
-
-  display: flex;
-
-  flex-direction: column;
-
-  overflow: hidden !important;
-}
-
-
-/* ======================================================
-   FULLSCREEN GRID
-   ====================================================== */
-
-body.tv-fullscreen #briefcasesContainer {
-  flex: 1;
-
-  min-height: 0;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(
-      7,
-      minmax(0, 1fr)
-    );
-
-  grid-template-rows:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
-
-  gap:
-    clamp(
-      3px,
-      0.45vw,
-      8px
-    );
-
-  width: 100%;
-
-  height: 100%;
-
-  margin: 0;
-
-  padding: 0;
-
-  overflow: hidden !important;
-}
-
-
-/* ======================================================
-   FULLSCREEN GRID CASES
-   ====================================================== */
-
-body.tv-fullscreen
-.briefcase:not(.center-open):not(.personal-box-reveal) {
-
-  min-width: 0;
-
-  min-height: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  margin: 0;
-
-  padding: 2px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  overflow: hidden;
-}
-
-body.tv-fullscreen
-.briefcase:not(.center-open):not(.personal-box-reveal)
-.briefcase-img {
-
-  width: 100%;
-
-  height:
-    calc(100% - 25px);
-
-  min-height: 0;
-
-  aspect-ratio: auto;
-
-  object-fit: cover;
-
-  object-position: center top;
-}
-
-body.tv-fullscreen
-.briefcase:not(.center-open):not(.personal-box-reveal)
-.briefcase-number {
-
-  width: 100%;
-
-  font-size:
-    clamp(
-      12px,
-      1.05vw,
-      20px
-    );
-
-  padding: 2px;
-}
-
-
-/* ======================================================
-   FULLSCREEN PERSONAL GRID CASE
-   ====================================================== */
-
-body.tv-fullscreen .briefcase.personal {
-  border:
-    5px solid #ffd700 !important;
-
-  transform:
-    scale(1.04) !important;
-
-  z-index: 20;
-
-  animation:
-    pulseHighlight
-    1.3s
-    infinite;
-}
-
-
-/* ======================================================
-   FULLSCREEN MESSAGE
-   ====================================================== */
-
-body.tv-fullscreen #briefcasesInfo {
-  flex:
-    0 0 5.5vh;
-
-  height: 5.5vh;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  margin: 0;
-
-  padding: 0;
-}
-
-body.tv-fullscreen #gameMessage {
-  font-size:
-    clamp(
-      20px,
-      1.7vw,
-      30px
-    );
-
-  font-weight: 800;
-
-  color: #ffd700;
-
-  text-shadow:
-    0 0 6px
-    rgba(255, 215, 0, 0.65);
-}
-
-
-/* ======================================================
-   FULLSCREEN PRIZES
-   ====================================================== */
-
-body.tv-fullscreen #prizesSection {
-  min-width: 0;
-
-  min-height: 0;
-
-  height: 100%;
-
-  margin: 0;
-
-  padding:
-    0.5vh
-    0.6vw;
-
-  border-left:
-    3px solid #d4af37;
-
-  overflow: hidden !important;
-}
-
-body.tv-fullscreen #prizesSection h2 {
-  font-size:
-    clamp(
-      20px,
-      1.7vw,
-      30px
-    );
-
-  margin:
-    0.5vh
-    0
-    0.8vh;
-
-  color: #ffd700;
-
-  font-weight: 900;
-
-  text-shadow:
-    0 0 10px
-    rgba(255, 215, 0, 0.8);
-}
-
-body.tv-fullscreen #prizeBoard {
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:
-    0.1vh
-    0.7vw;
-}
-
-body.tv-fullscreen #prizeBoard li {
-  font-size:
-    clamp(
-      14px,
-      1.15vw,
-      21px
-    );
-
-  line-height: 1.15;
-
-  font-weight: 700;
-
-  margin:
-    0.18vh
-    0;
-
-  color: #ffd700;
-}
-
-body.tv-fullscreen #prizeBoard li.eliminated {
-  color: #666;
-}
-
-body.tv-fullscreen #offersHistory li {
-  font-size:
-    clamp(
-      12px,
-      0.95vw,
-      18px
-    );
-
-  line-height: 1.15;
-
-  margin:
-    0.2vh
-    0;
-}
-
-
-/* ======================================================
-   FULLSCREEN MODAL
-   ====================================================== */
-
-body.tv-fullscreen .modal-content {
-  max-width: 55vw;
-
-  max-height: 75vh;
-
-  padding:
-    clamp(
-      15px,
-      2vw,
-      35px
-    );
-}
-
-
-/* ======================================================
-   ======================================================
-   CRITICAL REVEAL FIX
-   ======================================================
-
-   DO NOT MOVE THIS ABOVE OTHER BRIEFCASE RULES.
-
-   This deliberately removes all grid/hover/animation
-   behavior from the cloned enlarged briefcase.
-
-   ======================================================
+   CENTERED REVEAL
+   DESKTOP AND PHONE
    ====================================================== */
 
 body > .center-open,
@@ -1590,36 +1461,16 @@ body.tv-fullscreen > .personal-box-reveal {
 
   position: fixed !important;
 
-  /*
-     inset: 0 creates an overlay exactly the size
-     of the visible screen.
-  */
-
   inset: 0 !important;
 
   top: 0 !important;
-
   right: 0 !important;
-
   bottom: 0 !important;
-
   left: 0 !important;
 
-  /*
-     IMPORTANT:
-     The overlay itself does NOT use translate.
-     Flexbox centers its contents instead.
-
-     This prevents the cloned briefcase's original
-     transform from moving the reveal.
-  */
-
   transform: none !important;
-
   translate: none !important;
-
   scale: none !important;
-
   rotate: none !important;
 
   width: 100vw !important;
@@ -1670,14 +1521,11 @@ body.tv-fullscreen > .personal-box-reveal {
   animation: none !important;
 
   z-index: 15000 !important;
-
-  transform-origin:
-    center center !important;
 }
 
 
 /* ======================================================
-   ABSOLUTELY NO MOVEMENT ON HOVER
+   NO REVEAL MOVEMENT ON HOVER
    ====================================================== */
 
 body > .center-open:hover,
@@ -1700,18 +1548,6 @@ body.tv-fullscreen > .personal-box-reveal:hover {
 
 
 /* ======================================================
-   REMOVE ORIGINAL BRIEFCASE NUMBER FROM REVEAL
-   if clone happens to retain one
-   ====================================================== */
-
-body > .center-open > .briefcase-number,
-body > .personal-box-reveal > .briefcase-number {
-
-  display: none !important;
-}
-
-
-/* ======================================================
    CENTER REVEAL PHOTO
    ====================================================== */
 
@@ -1721,8 +1557,6 @@ body.tv-fullscreen > .center-open > .center-img {
   position: static !important;
 
   display: block !important;
-
-  flex: 0 1 auto !important;
 
   width: auto !important;
 
@@ -1761,26 +1595,16 @@ body.tv-fullscreen > .center-open > .center-img {
 
   transform: none !important;
 
-  translate: none !important;
-
-  scale: none !important;
-
   animation: none !important;
-
-  transition: none !important;
 }
 
 
 /* ======================================================
-   PERSONAL BOX REVEAL PHOTO
+   PERSONAL BOX REVEAL
    ====================================================== */
 
 body > .personal-box-reveal > .center-img,
 body.tv-fullscreen > .personal-box-reveal > .center-img {
-
-  position: static !important;
-
-  display: block !important;
 
   width: auto !important;
 
@@ -1801,9 +1625,6 @@ body.tv-fullscreen > .personal-box-reveal > .center-img {
   object-fit:
     contain !important;
 
-  object-position:
-    center center !important;
-
   border:
     7px solid #ffd700 !important;
 
@@ -1818,13 +1639,7 @@ body.tv-fullscreen > .personal-box-reveal > .center-img {
 
   transform: none !important;
 
-  translate: none !important;
-
-  scale: none !important;
-
   animation: none !important;
-
-  transition: none !important;
 }
 
 
@@ -1834,8 +1649,6 @@ body.tv-fullscreen > .personal-box-reveal > .center-img {
 
 body > .center-open > .center-amount,
 body > .personal-box-reveal > .center-amount {
-
-  position: static !important;
 
   display: block !important;
 
@@ -1866,20 +1679,12 @@ body > .personal-box-reveal > .center-amount {
       42px
     ) !important;
 
-  line-height:
-    1 !important;
+  line-height: 1 !important;
 
-  font-weight:
-    900 !important;
+  font-weight: 900 !important;
 
   white-space:
     nowrap !important;
-
-  transform:
-    none !important;
-
-  animation:
-    none !important;
 }
 
 
@@ -1888,8 +1693,6 @@ body > .personal-box-reveal > .center-amount {
    ====================================================== */
 
 body > .personal-box-reveal > .personal-box-message {
-
-  position: static !important;
 
   display: block !important;
 
@@ -1912,11 +1715,9 @@ body > .personal-box-reveal > .personal-box-message {
       56px
     ) !important;
 
-  line-height:
-    1 !important;
+  line-height: 1 !important;
 
-  font-weight:
-    900 !important;
+  font-weight: 900 !important;
 
   text-align:
     center !important;
@@ -1927,39 +1728,530 @@ body > .personal-box-reveal > .personal-box-message {
   text-shadow:
     0 0 8px #000,
     0 0 18px #ffd700 !important;
-
-  transform:
-    none !important;
-
-  animation:
-    none !important;
 }
 
 
 /* ======================================================
-   PHONE REVEAL
+   PHONE
+   IMPORTANT: THESE RULES COME AFTER FULLSCREEN
+   SO THE PHONE ALWAYS USES THE MOBILE LAYOUT.
    ====================================================== */
 
 @media (max-width: 430px) {
 
+  html,
+  html:fullscreen {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 100% !important;
+
+    overflow-x: hidden !important;
+
+    overflow-y: auto !important;
+
+    background: #000 !important;
+  }
+
+  body,
+  body.tv-fullscreen {
+    width: 100% !important;
+
+    height: auto !important;
+
+    max-height: none !important;
+
+    min-height: 100vh !important;
+
+    margin: 0 !important;
+
+    padding: 3px !important;
+
+    display: block !important;
+
+    overflow-x: hidden !important;
+
+    overflow-y: auto !important;
+
+    background: #000 !important;
+  }
+
+
+  /* ---------------- PHONE HEADER ---------------- */
+
+  header,
+  body.tv-fullscreen header {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    margin-bottom: 4px !important;
+
+    padding-bottom: 4px !important;
+  }
+
+  #headerContent,
+  body.tv-fullscreen #headerContent {
+    width: 100% !important;
+
+    height: auto !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    flex-wrap: nowrap !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+  }
+
+  #headerPhoto,
+  body.tv-fullscreen #headerPhoto {
+    width: 65px !important;
+
+    height: auto !important;
+
+    max-width: none !important;
+
+    margin: 3px !important;
+
+    border-width: 3px !important;
+  }
+
+  #headerTitles,
+  body.tv-fullscreen #headerTitles {
+    width: 100% !important;
+  }
+
+  h1,
+  body.tv-fullscreen #headerTitles h1 {
+    font-size: 1.3em !important;
+
+    margin: 1px 0 !important;
+
+    line-height: 1.05 !important;
+  }
+
+
+  /* ---------------- PHONE HEADER BUTTONS ---------------- */
+
+  #headerButtons,
+  body.tv-fullscreen #headerButtons {
+    position: static !important;
+
+    width: 100% !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: wrap !important;
+
+    justify-content: center !important;
+
+    align-items: center !important;
+
+    gap: 3px !important;
+
+    margin: 3px 0 !important;
+  }
+
+  #fullScreenBtn,
+  #watchIntroBtn {
+    font-size: 0.75em !important;
+
+    padding:
+      5px
+      8px !important;
+
+    margin: 2px !important;
+  }
+
+
+  /* ---------------- PHONE MAIN ---------------- */
+
+  main,
+  body.tv-fullscreen main {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    max-width: none !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    gap: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    background: #000 !important;
+  }
+
+
+  /* ---------------- PHONE CASE SECTION ---------------- */
+
+  #briefcasesSection,
+  body.tv-fullscreen #briefcasesSection {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 4px !important;
+
+    overflow: visible !important;
+
+    background: #000 !important;
+  }
+
+
+  /* ---------------- PHONE 3-COLUMN GRID ---------------- */
+
+  #briefcasesContainer,
+  body.tv-fullscreen #briefcasesContainer {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      ) !important;
+
+    grid-template-rows: none !important;
+
+    grid-auto-rows: auto !important;
+
+    justify-content: center !important;
+
+    align-items: start !important;
+
+    gap: 4px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    overflow: visible !important;
+  }
+
+
+  /* ---------------- PHONE CASES ---------------- */
+
+  .briefcase,
+  body.tv-fullscreen
+  .briefcase:not(.center-open):not(.personal-box-reveal) {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-width: 0 !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 1px !important;
+
+    border-width: 1px !important;
+
+    border-radius: 6px !important;
+  }
+
+  .briefcase-img,
+  body.tv-fullscreen
+  .briefcase:not(.center-open):not(.personal-box-reveal)
+  .briefcase-img {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    aspect-ratio: 2 / 3 !important;
+
+    object-fit: cover !important;
+
+    object-position:
+      center top !important;
+  }
+
+  .briefcase-number,
+  body.tv-fullscreen
+  .briefcase:not(.center-open):not(.personal-box-reveal)
+  .briefcase-number {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    font-size: 0.72em !important;
+
+    line-height: 1 !important;
+
+    padding: 2px !important;
+
+    margin-top: 1px !important;
+  }
+
+
+  /* ---------------- PHONE PERSONAL BOX ---------------- */
+
+  .briefcase.personal,
+  body.tv-fullscreen .briefcase.personal {
+
+    border:
+      3px solid #ffd700 !important;
+
+    transform:
+      scale(1.03) !important;
+
+    z-index: 20;
+  }
+
+
+  /* ---------------- PHONE GAME MESSAGE ---------------- */
+
+  #briefcasesInfo,
+  body.tv-fullscreen #briefcasesInfo {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    display: block !important;
+
+    margin-top: 6px !important;
+
+    padding: 3px 0 !important;
+
+    overflow: visible !important;
+  }
+
+  #gameMessage,
+  body.tv-fullscreen #gameMessage {
+
+    font-size: 1em !important;
+
+    line-height: 1.15 !important;
+
+    padding: 0 4px !important;
+  }
+
+
+  /* ---------------- PHONE PRIZES ---------------- */
+
+  #prizesSection,
+  body.tv-fullscreen #prizesSection {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    max-width: none !important;
+
+    margin-top: 8px !important;
+
+    padding:
+      8px
+      3px
+      15px !important;
+
+    border-left: none !important;
+
+    border-top:
+      2px solid #d4af37 !important;
+
+    overflow: visible !important;
+  }
+
+  #prizesSection h2,
+  body.tv-fullscreen #prizesSection h2 {
+
+    font-size: 1.25em !important;
+
+    margin:
+      6px
+      0 !important;
+  }
+
+  #prizeBoard,
+  body.tv-fullscreen #prizeBoard {
+
+    display: grid !important;
+
+    grid-template-columns:
+      1fr
+      1fr !important;
+
+    gap:
+      1px
+      8px !important;
+  }
+
+  #prizeBoard li,
+  body.tv-fullscreen #prizeBoard li {
+
+    font-size: 0.88em !important;
+
+    line-height: 1.15 !important;
+
+    margin: 2px 0 !important;
+  }
+
+  #offersHistory,
+  body.tv-fullscreen #offersHistory {
+
+    width: 100% !important;
+
+    height: auto !important;
+  }
+
+  #offersHistory li,
+  body.tv-fullscreen #offersHistory li {
+
+    font-size: 0.85em !important;
+  }
+
+
+  /* ---------------- PHONE MODAL ---------------- */
+
+  .modal,
+  body.tv-fullscreen .modal {
+
+    width: 100vw !important;
+
+    height: 100vh !important;
+  }
+
+  .modal-content,
+  body.tv-fullscreen .modal-content {
+
+    width: 92% !important;
+
+    max-width: 92% !important;
+
+    max-height: 85vh !important;
+
+    padding:
+      15px
+      10px !important;
+  }
+
+  .cases-to-open {
+
+    font-size:
+      clamp(
+        22px,
+        7vw,
+        32px
+      ) !important;
+  }
+
+  .bank-offer {
+
+    font-size:
+      clamp(
+        28px,
+        9vw,
+        42px
+      ) !important;
+  }
+
+
+  /* ---------------- PHONE BIG REVEAL ---------------- */
+
+  body > .center-open,
+  body > .personal-box-reveal,
+  body.tv-fullscreen > .center-open,
+  body.tv-fullscreen > .personal-box-reveal {
+
+    width: 100vw !important;
+
+    height: 100vh !important;
+
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    justify-content: center !important;
+
+    align-items: center !important;
+
+    overflow: hidden !important;
+  }
+
   body > .center-open > .center-img,
-  body > .personal-box-reveal > .center-img {
+  body.tv-fullscreen > .center-open > .center-img {
 
-    max-width:
-      70vw !important;
+    width: auto !important;
 
-    max-height:
-      58vh !important;
+    height: auto !important;
+
+    max-width: 72vw !important;
+
+    max-height: 58vh !important;
+  }
+
+  body > .personal-box-reveal > .center-img,
+  body.tv-fullscreen > .personal-box-reveal > .center-img {
+
+    width: auto !important;
+
+    height: auto !important;
+
+    max-width: 75vw !important;
+
+    max-height: 58vh !important;
   }
 
   body > .personal-box-reveal > .personal-box-message {
 
     font-size:
       clamp(
-        24px,
+        22px,
         7vw,
-        34px
+        32px
       ) !important;
+
+    white-space: normal !important;
+
+    padding:
+      0
+      10px !important;
   }
 
   body > .center-open > .center-amount,
@@ -1971,97 +2263,88 @@ body > .personal-box-reveal > .personal-box-message {
         6vw,
         30px
       ) !important;
+
+    padding:
+      6px
+      14px !important;
+  }
+
+
+  /* ---------------- PHONE INTRO ---------------- */
+
+  #introVideoContainer {
+
+    width: 100vw !important;
+
+    height: 100vh !important;
+  }
+
+  #introVideo {
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    object-fit: contain !important;
+
+    background: #000 !important;
+  }
+
+  #introButtons {
+
+    bottom: 20px !important;
+
+    width: 96% !important;
+
+    gap: 5px !important;
+
+    flex-wrap: wrap !important;
+  }
+
+  #introButtons button {
+
+    font-size: 0.8em !important;
+
+    padding:
+      7px
+      9px !important;
+
+    margin: 2px !important;
   }
 }
 
 
 /* ======================================================
-   LANDSCAPE PHONE / CAST MODE
+   VERY SMALL PHONES
    ====================================================== */
 
-@media (orientation: landscape) and (max-height: 600px) {
+@media (max-width: 350px) {
 
-  body.tv-fullscreen header {
-    flex:
-      0 0 13vh;
-
-    height: 13vh;
-  }
-
-  body.tv-fullscreen main {
-    height: 87vh;
-
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(150px, 21vw);
-  }
-
+  #briefcasesContainer,
   body.tv-fullscreen #briefcasesContainer {
-    grid-template-columns:
-      repeat(
-        7,
-        minmax(0, 1fr)
-      ) !important;
 
-    grid-template-rows:
+    grid-template-columns:
       repeat(
         3,
         minmax(0, 1fr)
       ) !important;
+
+    gap: 3px !important;
   }
 
-  body.tv-fullscreen #prizeBoard li {
-    font-size:
-      clamp(
-        9px,
-        1.3vw,
-        13px
-      );
+  .briefcase-number {
+
+    font-size: 0.66em !important;
   }
 
-  body.tv-fullscreen #prizesSection h2 {
-    font-size:
-      clamp(
-        13px,
-        2vw,
-        20px
-      );
+  #headerPhoto {
+
+    width: 58px !important;
   }
 
-  body.tv-fullscreen
-  > .center-open
-  > .center-img {
+  h1,
+  body.tv-fullscreen #headerTitles h1 {
 
-    max-height:
-      60vh !important;
-
-    max-width:
-      34vw !important;
+    font-size: 1.15em !important;
   }
-
-  body.tv-fullscreen
-  > .personal-box-reveal
-  > .center-img {
-
-    max-height:
-      62vh !important;
-
-    max-width:
-      37vw !important;
-  }
-}
-
-
-/* ======================================================
-   FINAL NO-SCROLL
-   ====================================================== */
-
-body.tv-fullscreen,
-body.tv-fullscreen main,
-body.tv-fullscreen #briefcasesSection,
-body.tv-fullscreen #briefcasesContainer,
-body.tv-fullscreen #prizesSection {
-
-  overflow:
-    hidden !important;
 }
