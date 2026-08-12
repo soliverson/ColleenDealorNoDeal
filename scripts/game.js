@@ -234,26 +234,27 @@ function openBriefcase(box) {
   // ------------------------------------------------------
 
   if (
-    currentRound < rounds.length &&
-    openedCount >= rounds[currentRound]
-  ) {
+  currentRound < rounds.length &&
+  openedCount >= rounds[currentRound]
+) {
 
-    offerActive = true;
+  offerActive = true;
 
-    document.getElementById("gameMessage").textContent =
-      "Waiting for the banker...";
+  document.getElementById("gameMessage").textContent =
+    "Waiting for the banker...";
+
+  // Wait until the enlarged picture disappears.
+  setTimeout(() => {
 
     playSound("offerSound");
 
-    setTimeout(() => {
+    offerDeal();
 
-      offerDeal();
+    // Reset opened box count for next round.
+    openedCount = 0;
 
-      // Reset opened box count for next round.
-      openedCount = 0;
-
-    }, 1000);
-  }
+  }, 6200);
+}
 
 
   // Remove large opened-box image after 5 seconds.
