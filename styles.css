@@ -2303,3 +2303,380 @@ body.tv-fullscreen #prizesSection {
 #skipIntroButton {
   position: static;
 }
+
+/* ======================================================
+   PHONE CASTING / LANDSCAPE TV MODE
+
+   When a phone is turned sideways and fullscreen is used,
+   force the game to use the TV layout instead of the
+   normal mobile layout.
+   ====================================================== */
+
+@media (orientation: landscape) and (max-height: 600px) {
+
+  body.tv-fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    overflow: hidden !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    background: #000 !important;
+  }
+
+
+  /* ---------------- HEADER ---------------- */
+
+  body.tv-fullscreen header {
+    flex: 0 0 12vh !important;
+
+    height: 12vh !important;
+
+    margin: 0 !important;
+
+    padding: 0 1vw !important;
+
+    box-sizing: border-box !important;
+  }
+
+  body.tv-fullscreen #headerContent {
+    height: 100% !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+  }
+
+  body.tv-fullscreen #headerPhoto {
+    width: auto !important;
+
+    height: 9vh !important;
+
+    margin: 2px !important;
+  }
+
+  body.tv-fullscreen #headerTitles {
+    width: auto !important;
+
+    flex: 1 !important;
+  }
+
+  body.tv-fullscreen #headerTitles h1 {
+    font-size: clamp(14px, 2.5vw, 24px) !important;
+
+    margin: 0 !important;
+
+    line-height: 1 !important;
+  }
+
+  body.tv-fullscreen #headerButtons {
+    position: static !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-end !important;
+
+    width: auto !important;
+
+    margin: 0 !important;
+  }
+
+  body.tv-fullscreen #headerButtons button {
+    font-size: 10px !important;
+
+    padding: 3px 6px !important;
+
+    margin: 1px !important;
+  }
+
+
+  /* ---------------- MAIN ---------------- */
+
+  body.tv-fullscreen main {
+    flex: 1 !important;
+
+    width: 100vw !important;
+
+    height: 88vh !important;
+
+    max-width: none !important;
+
+    min-height: 0 !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(150px, 21vw) !important;
+
+    gap: 4px !important;
+
+    margin: 0 !important;
+
+    padding: 3px !important;
+
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* ---------------- BRIEFCASE AREA ---------------- */
+
+  body.tv-fullscreen #briefcasesSection {
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* Force 21 boxes into 7 x 3 */
+
+  body.tv-fullscreen #briefcasesContainer {
+    flex: 1 !important;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-height: 0 !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(7, minmax(0, 1fr)) !important;
+
+    grid-template-rows:
+      repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 3px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* ---------------- INDIVIDUAL BOX ---------------- */
+
+  body.tv-fullscreen .briefcase:not(.center-open) {
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 0 !important;
+
+    padding: 1px !important;
+
+    margin: 0 !important;
+
+    border-width: 1px !important;
+
+    transform: none;
+  }
+
+  body.tv-fullscreen .briefcase.personal {
+    transform: scale(1.03) !important;
+  }
+
+
+  /* ---------------- PHOTOS ---------------- */
+
+  body.tv-fullscreen .briefcase:not(.center-open) .briefcase-img {
+    width: 100% !important;
+
+    height: calc(100% - 18px) !important;
+
+    min-height: 0 !important;
+
+    aspect-ratio: auto !important;
+
+    object-fit: cover !important;
+
+    object-position: center top !important;
+  }
+
+
+  /* ---------------- BOX NUMBER ---------------- */
+
+  body.tv-fullscreen .briefcase:not(.center-open) .briefcase-number {
+    width: 100% !important;
+
+    font-size: clamp(8px, 1.3vw, 12px) !important;
+
+    line-height: 1 !important;
+
+    padding: 1px !important;
+
+    margin-top: 1px !important;
+  }
+
+
+  /* ---------------- INSTRUCTION ---------------- */
+
+  body.tv-fullscreen #briefcasesInfo {
+    flex: 0 0 6vh !important;
+
+    height: 6vh !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+  }
+
+  body.tv-fullscreen #gameMessage {
+    font-size: clamp(10px, 1.6vw, 16px) !important;
+
+    line-height: 1 !important;
+  }
+
+
+  /* ---------------- PRIZE BOARD ---------------- */
+
+  body.tv-fullscreen #prizesSection {
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 2px !important;
+
+    border-top: none !important;
+
+    border-left: 2px solid #d4af37 !important;
+
+    overflow: hidden !important;
+  }
+
+  body.tv-fullscreen #prizesSection h2 {
+    font-size: clamp(9px, 1.4vw, 14px) !important;
+
+    margin: 2px 0 !important;
+  }
+
+  body.tv-fullscreen #prizeBoard {
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr !important;
+
+    font-size: inherit !important;
+  }
+
+  body.tv-fullscreen #prizeBoard li {
+    font-size: clamp(7px, 1.1vw, 11px) !important;
+
+    line-height: 1.05 !important;
+
+    margin: 1px 0 !important;
+
+    padding: 0 !important;
+  }
+
+  body.tv-fullscreen #offersHistory {
+    font-size: inherit !important;
+  }
+
+  body.tv-fullscreen #offersHistory li {
+    font-size: clamp(7px, 1vw, 10px) !important;
+
+    line-height: 1.05 !important;
+
+    margin: 1px 0 !important;
+  }
+
+
+  /* ---------------- BIG REVEAL ---------------- */
+
+  body.tv-fullscreen .center-open,
+  body.tv-fullscreen .personal-box-reveal {
+    position: fixed !important;
+
+    top: 50% !important;
+    left: 50% !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    z-index: 15000 !important;
+
+    pointer-events: none !important;
+  }
+
+  body.tv-fullscreen .center-open .center-img,
+  body.tv-fullscreen .personal-box-reveal .center-img {
+    width: auto !important;
+
+    height: auto !important;
+
+    max-height: 65vh !important;
+
+    max-width: 40vw !important;
+
+    object-fit: contain !important;
+  }
+
+  body.tv-fullscreen .personal-box-message {
+    font-size: clamp(18px, 3vw, 30px) !important;
+
+    margin: 4px 0 !important;
+  }
+
+  body.tv-fullscreen .center-amount {
+    font-size: clamp(16px, 2.5vw, 26px) !important;
+
+    padding: 4px 12px !important;
+  }
+
+
+  /* ---------------- MODALS ---------------- */
+
+  body.tv-fullscreen .modal-content {
+    width: auto !important;
+
+    max-width: 60vw !important;
+
+    max-height: 80vh !important;
+
+    padding: 12px !important;
+  }
+
+  body.tv-fullscreen .cases-to-open {
+    font-size: clamp(18px, 3vw, 30px) !important;
+  }
+
+  body.tv-fullscreen .bank-offer {
+    font-size: clamp(26px, 5vw, 48px) !important;
+  }
+}
