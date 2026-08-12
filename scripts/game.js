@@ -253,7 +253,7 @@ function openBriefcase(box) {
     // Reset opened box count for next round.
     openedCount = 0;
 
-  }, 6200);
+  }, 5500);
 }
 
 
@@ -406,13 +406,39 @@ function swapBox() {
 // ======================================================
 
 function getBankersOffer(values) {
+  const sum = values.reduce((acc, curr) => acc + curr, 0);
+  const average = sum / values.length;
 
-  const sum = values.reduce(
-    (acc, curr) => acc + curr,
-    0
-  );
+  // Banker becomes more generous as the game progresses.
+  const offerPercentages = [
+    0.35, // Round 1
+    0.45, // Round 2
+    0.55, // Round 3
+    0.65, // Round 4
+    0.75, // Round 5
+    0.85, // Round 6
+    0.90, // Round 7
+    0.95, // Round 8
+    1.00  // Final rounds
+  ];
 
-  return sum / values.length;
+  const percentage =
+    offerPercentages[currentRound] ?? 1;
+
+  let offer = average * percentage;
+
+  // Keep early offers from becoming too large.
+  if (currentRound === 0) {
+    offer = Math.min(offer, 75);
+  }
+
+  if (currentRound === 1) {
+    offer = Math.min(offer, 100);
+  }
+
+  // Round to the nearest dollar for cleaner offers.
+offer = Math.round(offer / 5) * 5;
+  return offer;
 }
 
 
